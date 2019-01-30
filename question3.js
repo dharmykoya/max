@@ -26,7 +26,7 @@ app.get('/save', function(req, res) { //3
 
     user.save(function(err) {
         if (err) {
-            res.status(500).send(err);
+            err.status(500).send(err);
             return logger.log(err);
         }
     });
