@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
 
     const input = [
         {
@@ -84,42 +94,29 @@
 
     var studentDetails = input.map((student) => {
         var dob = parseInt(student.dob);
-        var date = new Date();
-        var year = date.getFullYear();
-        var output = {
-            name: student.name,
-            age: (year - dob),
-            regNo: student.regNo
-        }
-        return output
+    var date = new Date();
+    var year = date.getFullYear();
+    var details = {
+        name: student.name,
+        dob : student.dob,
+        age: (year - dob),
+        regNo: student.regNo
+    }
+    return details;
     })
-
 
     var answer = studentDetails.sort((a, b) => {
 
         if(a.age > b.age){
-            return 1;
-        } else {
-            return -1;
-        }
+        return -1;
+    } else {
+        return 1;
+    }
     })
 
+    console.log(studentDetails)
 
-    function group (array) {
-        var arrayLength = array.length;
-        var i = 0;
-        var arrays = [];
-        arrays[0] = [];
+</script>
 
-        for(var j = 0; j < arrayLength; j++){
-            arrays[i].push(array[j]);
-            if(arrays[i].length === 3) {
-                i++;
-                arrays[i] = []
-            }
-        }
-
-        return arrays;
-    }
-
-    console.log(group(answer));
+</body>
+</html>
