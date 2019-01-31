@@ -4,48 +4,51 @@
  * @param {array} input Array of student objects
  */
 function classifier(input) {
-  // Your code should go here.
-    var studentDetails = input.map((student) => {
-        var dob = parseInt(student.dob);
-        var date = new Date();
-        var year = date.getFullYear();
-        var details = {
-            name: student.name,
-            dob : student.dob,
-            age: (year - dob),
-            regNo: student.regNo
-        }
-        return details
-    })
+    function studentDetails (input) {
+        return input.map((student) => {
+            let dob = parseInt(student.dob);
+            let date = new Date();
+            let year = date.getFullYear();
+            return {
+                name: student.name,
+                dob: student.dob,
+                age: (year - dob),
+                regNo: student.regNo
+            };
+        });
+    }
 
-    var answer = studentDetails.sort((a, b) => {
-
-        if(a.age > b.age){
-            return -1;
-        } else {
-            return 1;
-        }
-    })
+    function answer () {
+        return studentDetails(input).sort((a, b) => {
+            if(a.age > b.age){
+                return -1;
+            } else {
+                return 1;
+            }
+        })
+    }
 
     function group (array) {
-        var arrayLength = array.length;
-        var i = 0;
-        var arrays = [];
+        let arrayLength = array.length;
+        let i = 0;
+        let arrays = [];
         arrays[0] = [];
 
-        for(var j = 0; j < arrayLength; j++){
+        for(let j = 0; j < arrayLength; j++){
             arrays[i].push(array[j]);
             if(arrays[i].length === 2) {
                 i++;
                 arrays[i] = []
             }
         }
+
         return arrays;
     }
 
-    var finalAnswer = group(answer);
+    let finalAnswer = group(answer());
 
-    const output = {
+
+    return {
         numberOfGroup: (finalAnswer.length)-1,
         group1: {
             members: [
@@ -112,7 +115,8 @@ function classifier(input) {
             regNos: [finalAnswer[7][0].regNo, finalAnswer[7][1].regNo]
         }
     }
-    return output;
+
+
 }
 
 module.exports = classifier;
